@@ -10,30 +10,27 @@
 <body>
 
 <div class="header">
-  <h1>🏗 Civil <span>Calculator</span> Pro</h1>
-  <p>17 calculators · PDF report · Tamil Nadu rates</p>
-  <div style="margin-top:10px;text-align:right;padding-right:15px">
-    <select id="languageSelector" onchange="changeLanguage()" style="padding:8px 14px;border:none;border-radius:20px;background:#E8620A;color:white;font-weight:700;">
+  <h1>🏗 <span data-i18n="appTitle">Civil Calculator Pro</span></h1>
+  <p data-i18n="appSubtitle">17 Calculators · PDF Reports · Premium Analysis</p>
+  <div class="header-controls">
+    <select id="languageSelector" onchange="changeLanguage()" class="lang-selector">
       <option value="en">English</option>
       <option value="ta">தமிழ்</option>
       <option value="hi">हिन्दी</option>
-      <option value="te">తెలుగు</option>
-      <option value="ml">മലയാളം</option>
-      <option value="kn">ಕನ್ನಡ</option>
     </select>
   </div>
 </div>
 
 <div class="tabs-wrapper">
   <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('concrete')">Concrete</button>
-    <button class="tab-btn" onclick="showTab('brick')">Brick</button>
-    <button class="tab-btn" onclick="showTab('materials')">Materials</button>
-    <button class="tab-btn" onclick="showTab('structure')">Structure</button>
-    <button class="tab-btn" onclick="showTab('finishing')">Finishing</button>
-    <button class="tab-btn" onclick="showTab('cost')">Cost</button>
-    <button class="tab-btn" onclick="showTab('report')">📄 PDF</button>
-    <button class="tab-btn" onclick="showTab('prices')">🤖 AI Prices</button>
+    <button class="tab-btn active" onclick="showTab('concrete')" data-i18n="tabConcrete">Concrete</button>
+    <button class="tab-btn" onclick="showTab('brick')" data-i18n="tabBrick">Brick</button>
+    <button class="tab-btn" onclick="showTab('materials')" data-i18n="tabMaterials">Materials</button>
+    <button class="tab-btn" onclick="showTab('structure')" data-i18n="tabStructure">Structure</button>
+    <button class="tab-btn" onclick="showTab('finishing')" data-i18n="tabFinishing">Finishing</button>
+    <button class="tab-btn" onclick="showTab('cost')" data-i18n="tabCost">Cost</button>
+    <button class="tab-btn" onclick="showTab('report')" data-i18n="tabReport">📄 Report</button>
+    <button class="tab-btn" onclick="showTab('prices')" data-i18n="tabPrices">🤖 AI Prices</button>
   </div>
 </div>
 
@@ -45,15 +42,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏗</div>
-        <div class="card-title">Concrete Volume</div>
+        <div class="card-title" data-i18n="calcConcreteVolume">Concrete Volume</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="conLength" placeholder="e.g. 10" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="conWidth" placeholder="e.g. 8" min="0"></div>
-      <div class="field"><label>Height / Depth (ft)</label><input type="number" id="conHeight" placeholder="e.g. 0.5" min="0"></div>
-      <button class="calc-btn" onclick="concreteCalc()">Calculate Volume</button>
-      <button class="reset-btn" onclick="resetCard('conLength','conWidth','conHeight','conResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="conLength" placeholder="e.g. 10" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="conWidth" placeholder="e.g. 8" min="0"></div>
+      <div class="field"><label data-i18n="inputHeight">Height / Depth (ft)</label><input type="number" id="conHeight" placeholder="e.g. 0.5" min="0"></div>
+      <button class="calc-btn" onclick="concreteCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('conLength','conWidth','conHeight','conResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="conResult">
-        <div class="result-label">Concrete Volume</div>
+        <div class="result-label" data-i18n="calcConcreteVolume">Concrete Volume</div>
         <div class="result-value" id="conResultVal"></div>
         <div class="result-sub" id="conResultSub"></div>
       </div>
@@ -62,15 +59,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏢</div>
-        <div class="card-title">Slab Calculator</div>
+        <div class="card-title" data-i18n="calcSlabCalculator">Slab Calculator</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="slabLength" placeholder="e.g. 20" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="slabWidth" placeholder="e.g. 15" min="0"></div>
-      <div class="field"><label>Thickness (ft)</label><input type="number" id="slabThick" placeholder="e.g. 0.5" min="0"></div>
-      <button class="calc-btn" onclick="slabCalc()">Calculate Slab</button>
-      <button class="reset-btn" onclick="resetCard('slabLength','slabWidth','slabThick','slabResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="slabLength" placeholder="e.g. 20" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="slabWidth" placeholder="e.g. 15" min="0"></div>
+      <div class="field"><label data-i18n="inputThickness">Thickness (ft)</label><input type="number" id="slabThick" placeholder="e.g. 0.5" min="0"></div>
+      <button class="calc-btn" onclick="slabCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('slabLength','slabWidth','slabThick','slabResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="slabResult">
-        <div class="result-label">Slab</div>
+        <div class="result-label" data-i18n="calcSlabCalculator">Slab</div>
         <div class="result-value" id="slabResultVal"></div>
         <div class="result-sub" id="slabResultSub"></div>
       </div>
@@ -79,15 +76,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏛</div>
-        <div class="card-title">Column Calculator</div>
+        <div class="card-title" data-i18n="calcColumnCalculator">Column Calculator</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="colL" placeholder="e.g. 1" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="colW" placeholder="e.g. 1" min="0"></div>
-      <div class="field"><label>Height (ft)</label><input type="number" id="colH" placeholder="e.g. 10" min="0"></div>
-      <button class="calc-btn" onclick="columnCalc()">Calculate Column</button>
-      <button class="reset-btn" onclick="resetCard('colL','colW','colH','colResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="colL" placeholder="e.g. 1" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="colW" placeholder="e.g. 1" min="0"></div>
+      <div class="field"><label data-i18n="inputHeight">Height (ft)</label><input type="number" id="colH" placeholder="e.g. 10" min="0"></div>
+      <button class="calc-btn" onclick="columnCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('colL','colW','colH','colResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="colResult">
-        <div class="result-label">Column</div>
+        <div class="result-label" data-i18n="calcColumnCalculator">Column</div>
         <div class="result-value" id="colResultVal"></div>
       </div>
     </div>
@@ -95,15 +92,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏗</div>
-        <div class="card-title">Beam Calculator</div>
+        <div class="card-title" data-i18n="calcBeamCalculator">Beam Calculator</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="beamL" placeholder="e.g. 15" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="beamW" placeholder="e.g. 1" min="0"></div>
-      <div class="field"><label>Depth (ft)</label><input type="number" id="beamH" placeholder="e.g. 1.5" min="0"></div>
-      <button class="calc-btn" onclick="beamCalc()">Calculate Beam</button>
-      <button class="reset-btn" onclick="resetCard('beamL','beamW','beamH','beamResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="beamL" placeholder="e.g. 15" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="beamW" placeholder="e.g. 1" min="0"></div>
+      <div class="field"><label data-i18n="inputDepth">Depth (ft)</label><input type="number" id="beamH" placeholder="e.g. 1.5" min="0"></div>
+      <button class="calc-btn" onclick="beamCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('beamL','beamW','beamH','beamResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="beamResult">
-        <div class="result-label">Beam</div>
+        <div class="result-label" data-i18n="calcBeamCalculator">Beam</div>
         <div class="result-value" id="beamResultVal"></div>
       </div>
     </div>
@@ -111,15 +108,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏠</div>
-        <div class="card-title">Footing Calculator</div>
+        <div class="card-title" data-i18n="calcFootingCalculator">Footing Calculator</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="footL" placeholder="e.g. 4" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="footW" placeholder="e.g. 4" min="0"></div>
-      <div class="field"><label>Depth (ft)</label><input type="number" id="footD" placeholder="e.g. 2" min="0"></div>
-      <button class="calc-btn" onclick="footingCalc()">Calculate Footing</button>
-      <button class="reset-btn" onclick="resetCard('footL','footW','footD','footResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="footL" placeholder="e.g. 4" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="footW" placeholder="e.g. 4" min="0"></div>
+      <div class="field"><label data-i18n="inputDepth">Depth (ft)</label><input type="number" id="footD" placeholder="e.g. 2" min="0"></div>
+      <button class="calc-btn" onclick="footingCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('footL','footW','footD','footResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="footResult">
-        <div class="result-label">Footing</div>
+        <div class="result-label" data-i18n="calcFootingCalculator">Footing</div>
         <div class="result-value" id="footResultVal"></div>
       </div>
     </div>
@@ -131,14 +128,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🧱</div>
-        <div class="card-title">Brick Calculator</div>
+        <div class="card-title" data-i18n="calcBrickCalculator">Brick Calculator</div>
       </div>
-      <div class="field"><label>Wall Length (ft)</label><input type="number" id="wallL" placeholder="e.g. 20" min="0"></div>
-      <div class="field"><label>Wall Height (ft)</label><input type="number" id="wallH" placeholder="e.g. 10" min="0"></div>
-      <button class="calc-btn" onclick="brickCalc()">Calculate Bricks</button>
-      <button class="reset-btn" onclick="resetCard('wallL','wallH','brickRes')">Clear</button>
+      <div class="field"><label data-i18n="inputWallLength">Wall Length (ft)</label><input type="number" id="wallL" placeholder="e.g. 20" min="0"></div>
+      <div class="field"><label data-i18n="inputWallHeight">Wall Height (ft)</label><input type="number" id="wallH" placeholder="e.g. 10" min="0"></div>
+      <button class="calc-btn" onclick="brickCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('wallL','wallH','brickRes')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="brickRes">
-        <div class="result-label">Bricks Required</div>
+        <div class="result-label" data-i18n="resultBricksRequired">Bricks Required</div>
         <div class="result-value" id="brickResVal"></div>
         <div class="result-sub" id="brickResSub"></div>
       </div>
@@ -151,13 +148,13 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🧱</div>
-        <div class="card-title">Cement Bags</div>
+        <div class="card-title" data-i18n="calcCementBags">Cement Bags</div>
       </div>
-      <div class="field"><label>Concrete Volume (CFT)</label><input type="number" id="cemVol" placeholder="e.g. 100" min="0"></div>
-      <button class="calc-btn" onclick="cementCalc()">Calculate Cement</button>
-      <button class="reset-btn" onclick="resetCard('cemVol','cemResult')">Clear</button>
+      <div class="field"><label data-i18n="inputConcreteVolume">Concrete Volume (CFT)</label><input type="number" id="cemVol" placeholder="e.g. 100" min="0"></div>
+      <button class="calc-btn" onclick="cementCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('cemVol','cemResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="cemResult">
-        <div class="result-label">Cement Required</div>
+        <div class="result-label" data-i18n="resultCementRequired">Cement Required</div>
         <div class="result-value" id="cemResultVal"></div>
         <div class="result-sub" id="cemResultSub"></div>
       </div>
@@ -166,13 +163,13 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏖</div>
-        <div class="card-title">Sand Calculator</div>
+        <div class="card-title" data-i18n="calcSandCalculator">Sand Calculator</div>
       </div>
-      <div class="field"><label>Concrete Volume (CFT)</label><input type="number" id="sandVol" placeholder="e.g. 100" min="0"></div>
-      <button class="calc-btn" onclick="sandCalc()">Calculate Sand</button>
-      <button class="reset-btn" onclick="resetCard('sandVol','sandResult')">Clear</button>
+      <div class="field"><label data-i18n="inputConcreteVolume">Concrete Volume (CFT)</label><input type="number" id="sandVol" placeholder="e.g. 100" min="0"></div>
+      <button class="calc-btn" onclick="sandCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('sandVol','sandResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="sandResult">
-        <div class="result-label">Sand Required</div>
+        <div class="result-label" data-i18n="resultSandRequired">Sand Required</div>
         <div class="result-value" id="sandResultVal"></div>
       </div>
     </div>
@@ -180,13 +177,13 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🪨</div>
-        <div class="card-title">Jelly (Aggregate)</div>
+        <div class="card-title" data-i18n="calcJellyAggregate">Aggregate (Jelly)</div>
       </div>
-      <div class="field"><label>Concrete Volume (CFT)</label><input type="number" id="jellyVol" placeholder="e.g. 100" min="0"></div>
-      <button class="calc-btn" onclick="jellyCalc()">Calculate Jelly</button>
-      <button class="reset-btn" onclick="resetCard('jellyVol','jellyResult')">Clear</button>
+      <div class="field"><label data-i18n="inputConcreteVolume">Concrete Volume (CFT)</label><input type="number" id="jellyVol" placeholder="e.g. 100" min="0"></div>
+      <button class="calc-btn" onclick="jellyCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('jellyVol','jellyResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="jellyResult">
-        <div class="result-label">Jelly Required</div>
+        <div class="result-label" data-i18n="resultJellyRequired">Aggregate Required</div>
         <div class="result-value" id="jellyResultVal"></div>
       </div>
     </div>
@@ -194,14 +191,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🔩</div>
-        <div class="card-title">Steel Weight</div>
+        <div class="card-title" data-i18n="calcSteelWeight">Steel Weight</div>
       </div>
-      <div class="field"><label>Steel Diameter (mm)</label><input type="number" id="steelDia" placeholder="e.g. 12" min="0"></div>
-      <div class="field"><label>Steel Length (ft)</label><input type="number" id="steelLen" placeholder="e.g. 40" min="0"></div>
-      <button class="calc-btn" onclick="steelCalc()">Calculate Steel</button>
-      <button class="reset-btn" onclick="resetCard('steelDia','steelLen','steelResult')">Clear</button>
+      <div class="field"><label data-i18n="inputSteelDiameter">Steel Diameter (mm)</label><input type="number" id="steelDia" placeholder="e.g. 12" min="0"></div>
+      <div class="field"><label data-i18n="inputSteelLength">Steel Length (ft)</label><input type="number" id="steelLen" placeholder="e.g. 40" min="0"></div>
+      <button class="calc-btn" onclick="steelCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('steelDia','steelLen','steelResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="steelResult">
-        <div class="result-label">Steel Weight</div>
+        <div class="result-label" data-i18n="resultSteelWeight">Steel Weight</div>
         <div class="result-value" id="steelResultVal"></div>
         <div class="result-sub" id="steelResultSub"></div>
       </div>
@@ -215,15 +212,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">⛏</div>
-        <div class="card-title">Excavation</div>
+        <div class="card-title" data-i18n="calcExcavation">Excavation</div>
       </div>
-      <div class="field"><label>Length (ft)</label><input type="number" id="excL" placeholder="e.g. 20" min="0"></div>
-      <div class="field"><label>Width (ft)</label><input type="number" id="excW" placeholder="e.g. 10" min="0"></div>
-      <div class="field"><label>Depth (ft)</label><input type="number" id="excD" placeholder="e.g. 5" min="0"></div>
-      <button class="calc-btn" onclick="excavationCalc()">Calculate Excavation</button>
-      <button class="reset-btn" onclick="resetCard('excL','excW','excD','excResult')">Clear</button>
+      <div class="field"><label data-i18n="inputLength">Length (ft)</label><input type="number" id="excL" placeholder="e.g. 20" min="0"></div>
+      <div class="field"><label data-i18n="inputWidth">Width (ft)</label><input type="number" id="excW" placeholder="e.g. 10" min="0"></div>
+      <div class="field"><label data-i18n="inputDepth">Depth (ft)</label><input type="number" id="excD" placeholder="e.g. 5" min="0"></div>
+      <button class="calc-btn" onclick="excavationCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('excL','excW','excD','excResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="excResult">
-        <div class="result-label">Excavation Volume</div>
+        <div class="result-label" data-i18n="resultExcavationVolume">Excavation Volume</div>
         <div class="result-value" id="excResultVal"></div>
       </div>
     </div>
@@ -231,15 +228,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🚰</div>
-        <div class="card-title">Water Tank</div>
+        <div class="card-title" data-i18n="calcWaterTank">Water Tank</div>
       </div>
-      <div class="field"><label>Tank Length (ft)</label><input type="number" id="tankL" placeholder="e.g. 6" min="0"></div>
-      <div class="field"><label>Tank Width (ft)</label><input type="number" id="tankW" placeholder="e.g. 4" min="0"></div>
-      <div class="field"><label>Tank Height (ft)</label><input type="number" id="tankH" placeholder="e.g. 4" min="0"></div>
-      <button class="calc-btn" onclick="tankCalc()">Calculate Capacity</button>
-      <button class="reset-btn" onclick="resetCard('tankL','tankW','tankH','tankResult')">Clear</button>
+      <div class="field"><label data-i18n="inputTankLength">Tank Length (ft)</label><input type="number" id="tankL" placeholder="e.g. 6" min="0"></div>
+      <div class="field"><label data-i18n="inputTankWidth">Tank Width (ft)</label><input type="number" id="tankW" placeholder="e.g. 4" min="0"></div>
+      <div class="field"><label data-i18n="inputTankHeight">Tank Height (ft)</label><input type="number" id="tankH" placeholder="e.g. 4" min="0"></div>
+      <button class="calc-btn" onclick="tankCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('tankL','tankW','tankH','tankResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="tankResult">
-        <div class="result-label">Tank Capacity</div>
+        <div class="result-label" data-i18n="resultTankCapacity">Tank Capacity</div>
         <div class="result-value" id="tankResultVal"></div>
         <div class="result-sub" id="tankResultSub"></div>
       </div>
@@ -248,14 +245,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🪜</div>
-        <div class="card-title">Staircase</div>
+        <div class="card-title" data-i18n="calcStaircase">Staircase</div>
       </div>
-      <div class="field"><label>Floor Height (ft)</label><input type="number" id="stairH" placeholder="e.g. 10" min="0"></div>
-      <div class="field"><label>Each Step Height (ft)</label><input type="number" id="stepH" placeholder="e.g. 0.58" min="0"></div>
-      <button class="calc-btn" onclick="stairCalc()">Calculate Steps</button>
-      <button class="reset-btn" onclick="resetCard('stairH','stepH','stairResult')">Clear</button>
+      <div class="field"><label data-i18n="inputFloorHeight">Floor Height (ft)</label><input type="number" id="stairH" placeholder="e.g. 10" min="0"></div>
+      <div class="field"><label data-i18n="inputStepHeight">Each Step Height (ft)</label><input type="number" id="stepH" placeholder="e.g. 0.58" min="0"></div>
+      <button class="calc-btn" onclick="stairCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('stairH','stepH','stairResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="stairResult">
-        <div class="result-label">Steps Required</div>
+        <div class="result-label" data-i18n="resultStepsRequired">Steps Required</div>
         <div class="result-value" id="stairResultVal"></div>
       </div>
     </div>
@@ -268,15 +265,15 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">⬜</div>
-        <div class="card-title">Tile Calculator</div>
+        <div class="card-title" data-i18n="calcTileCalculator">Tile Calculator</div>
       </div>
-      <div class="field"><label>Room Length (ft)</label><input type="number" id="tileL" placeholder="e.g. 15" min="0"></div>
-      <div class="field"><label>Room Width (ft)</label><input type="number" id="tileW" placeholder="e.g. 12" min="0"></div>
-      <div class="field"><label>Tile Size (ft × ft)</label><input type="number" id="tileS" placeholder="e.g. 2 for 2×2 ft" min="0"></div>
-      <button class="calc-btn" onclick="tileCalc()">Calculate Tiles</button>
-      <button class="reset-btn" onclick="resetCard('tileL','tileW','tileS','tileResult')">Clear</button>
+      <div class="field"><label data-i18n="inputRoomLength">Room Length (ft)</label><input type="number" id="tileL" placeholder="e.g. 15" min="0"></div>
+      <div class="field"><label data-i18n="inputRoomWidth">Room Width (ft)</label><input type="number" id="tileW" placeholder="e.g. 12" min="0"></div>
+      <div class="field"><label data-i18n="inputTileSize">Tile Size (ft × ft)</label><input type="number" id="tileS" placeholder="e.g. 2 for 2×2 ft" min="0"></div>
+      <button class="calc-btn" onclick="tileCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('tileL','tileW','tileS','tileResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="tileResult">
-        <div class="result-label">Tiles Required</div>
+        <div class="result-label" data-i18n="resultTilesRequired">Tiles Required</div>
         <div class="result-value" id="tileResultVal"></div>
         <div class="result-sub" id="tileResultSub"></div>
       </div>
@@ -285,14 +282,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🎨</div>
-        <div class="card-title">Paint Calculator</div>
+        <div class="card-title" data-i18n="calcPaintCalculator">Paint Calculator</div>
       </div>
-      <div class="field"><label>Wall Length (ft)</label><input type="number" id="paintL" placeholder="e.g. 20" min="0"></div>
-      <div class="field"><label>Wall Height (ft)</label><input type="number" id="paintH" placeholder="e.g. 10" min="0"></div>
-      <button class="calc-btn" onclick="paintCalc()">Calculate Paint</button>
-      <button class="reset-btn" onclick="resetCard('paintL','paintH','paintResult')">Clear</button>
+      <div class="field"><label data-i18n="inputWallLength">Wall Length (ft)</label><input type="number" id="paintL" placeholder="e.g. 20" min="0"></div>
+      <div class="field"><label data-i18n="inputWallHeight">Wall Height (ft)</label><input type="number" id="paintH" placeholder="e.g. 10" min="0"></div>
+      <button class="calc-btn" onclick="paintCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('paintL','paintH','paintResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="paintResult">
-        <div class="result-label">Paint Required (2 coats)</div>
+        <div class="result-label" data-i18n="resultPaintRequired">Paint Required (2 coats)</div>
         <div class="result-value" id="paintResultVal"></div>
         <div class="result-sub" id="paintResultSub"></div>
       </div>
@@ -301,14 +298,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🧱</div>
-        <div class="card-title">Plaster Calculator</div>
+        <div class="card-title" data-i18n="calcPlasterCalculator">Plaster Calculator</div>
       </div>
-      <div class="field"><label>Wall Length (ft)</label><input type="number" id="plasL" placeholder="e.g. 20" min="0"></div>
-      <div class="field"><label>Wall Height (ft)</label><input type="number" id="plasH" placeholder="e.g. 10" min="0"></div>
-      <button class="calc-btn" onclick="plasterCalc()">Calculate Plaster</button>
-      <button class="reset-btn" onclick="resetCard('plasL','plasH','plasResult')">Clear</button>
+      <div class="field"><label data-i18n="inputWallLength">Wall Length (ft)</label><input type="number" id="plasL" placeholder="e.g. 20" min="0"></div>
+      <div class="field"><label data-i18n="inputWallHeight">Wall Height (ft)</label><input type="number" id="plasH" placeholder="e.g. 10" min="0"></div>
+      <button class="calc-btn" onclick="plasterCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('plasL','plasH','plasResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="plasResult">
-        <div class="result-label">Plaster Area</div>
+        <div class="result-label" data-i18n="resultPlasterArea">Plaster Area</div>
         <div class="result-value" id="plasResultVal"></div>
       </div>
     </div>
@@ -321,14 +318,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">💰</div>
-        <div class="card-title">Cement Cost</div>
+        <div class="card-title" data-i18n="calcCementCost">Cement Cost</div>
       </div>
-      <div class="field"><label>Total Cement Bags</label><input type="number" id="cemBags" placeholder="e.g. 50" min="0"></div>
-      <div class="field"><label>Price Per Bag (₹)</label><input type="number" id="cemPrice" placeholder="e.g. 380" min="0"></div>
-      <button class="calc-btn" onclick="costCalc()">Calculate Cost</button>
-      <button class="reset-btn" onclick="resetCard('cemBags','cemPrice','costResult')">Clear</button>
+      <div class="field"><label data-i18n="inputTotalCementBags">Total Cement Bags</label><input type="number" id="cemBags" placeholder="e.g. 50" min="0"></div>
+      <div class="field"><label data-i18n="inputPricePerBag">Price Per Bag (₹)</label><input type="number" id="cemPrice" placeholder="e.g. 380" min="0"></div>
+      <button class="calc-btn" onclick="costCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('cemBags','cemPrice','costResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="costResult">
-        <div class="result-label">Total Cement Cost</div>
+        <div class="result-label" data-i18n="resultTotalCementCost">Total Cement Cost</div>
         <div class="result-value" id="costResultVal"></div>
       </div>
     </div>
@@ -336,14 +333,14 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">⬜</div>
-        <div class="card-title">Flooring Cost</div>
+        <div class="card-title" data-i18n="calcFlooringCost">Flooring Cost</div>
       </div>
-      <div class="field"><label>Floor Area (sq.ft)</label><input type="number" id="floorArea" placeholder="e.g. 500" min="0"></div>
-      <div class="field"><label>Rate per sq.ft (₹)</label><input type="number" id="floorRate" placeholder="e.g. 60" min="0"></div>
-      <button class="calc-btn" onclick="flooringCalc()">Calculate Cost</button>
-      <button class="reset-btn" onclick="resetCard('floorArea','floorRate','floorResult')">Clear</button>
+      <div class="field"><label data-i18n="inputFloorArea">Floor Area (sq.ft)</label><input type="number" id="floorArea" placeholder="e.g. 500" min="0"></div>
+      <div class="field"><label data-i18n="inputRatePerSqft">Rate per sq.ft (₹)</label><input type="number" id="floorRate" placeholder="e.g. 60" min="0"></div>
+      <button class="calc-btn" onclick="flooringCalc()" data-i18n="btnCalculate">Calculate</button>
+      <button class="reset-btn" onclick="resetCard('floorArea','floorRate','floorResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="floorResult">
-        <div class="result-label">Total Flooring Cost</div>
+        <div class="result-label" data-i18n="resultTotalFlooringCost">Total Flooring Cost</div>
         <div class="result-value" id="floorResultVal"></div>
       </div>
     </div>
@@ -351,22 +348,22 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">🏠</div>
-        <div class="card-title">House Construction Estimator</div>
+        <div class="card-title" data-i18n="calcHouseConstructionEstimator">House Construction Estimator</div>
       </div>
-      <div class="field"><label>House Area (sq.ft)</label><input type="number" id="houseArea" placeholder="e.g. 1000" min="0"></div>
+      <div class="field"><label data-i18n="inputHouseArea">House Area (sq.ft)</label><input type="number" id="houseArea" placeholder="e.g. 1000" min="0"></div>
       <div class="field">
-        <label>Construction Type</label>
-        <select id="houseType" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Inter',sans-serif;color:var(--dark);background:var(--gray-light);transition:all 0.2s;">
+        <label data-i18n="inputConstructionType">Construction Type</label>
+        <select id="houseType" class="select-field">
           <option value="1800">Basic (₹1,800/sq.ft)</option>
           <option value="2500" selected>Standard (₹2,500/sq.ft)</option>
           <option value="3500">Premium (₹3,500/sq.ft)</option>
           <option value="5000">Luxury (₹5,000/sq.ft)</option>
         </select>
       </div>
-      <button class="calc-btn" onclick="houseCalc()">Estimate Cost</button>
-      <button class="reset-btn" onclick="resetCard('houseArea','houseResult')">Clear</button>
+      <button class="calc-btn" onclick="houseCalc()" data-i18n="btnEstimateCoust">Estimate Cost</button>
+      <button class="reset-btn" onclick="resetCard('houseArea','houseResult')" data-i18n="btnClear">Clear</button>
       <div class="result-box" id="houseResult">
-        <div class="result-label">Estimated Construction Cost</div>
+        <div class="result-label" data-i18n="resultEstimatedConstructionCost">Estimated Construction Cost</div>
         <div class="result-value" id="houseResultVal"></div>
         <div class="result-sub" id="houseResultSub"></div>
       </div>
@@ -377,79 +374,77 @@
   <!-- PDF TAB -->
   <div class="calc-section" id="tab-report">
     <div class="pdf-card">
-      <h3>📄 PDF Report</h3>
-      <p>Professional multi-page PDF report with summary and material details</p>
-      <button class="pdf-btn" onclick="generateReport()">📥 Download Full Report</button>
+      <h3 data-i18n="pdfReportTitle">Professional PDF Report</h3>
+      <p data-i18n="pdfReportDesc">Multi-page professional report with summary and material details</p>
+      <button class="pdf-btn" onclick="generateReport()" data-i18n="btnDownloadReport">Download Full Report</button>
       <div class="pdf-status" id="pdfStatus"></div>
     </div>
-    <div class="card" style="font-size:13px;color:var(--gray);line-height:1.7;">
-      <strong style="color:var(--dark);">How to use:</strong><br>
-      1. Go to other tabs and enter your values<br>
-      2. Click Calculate in each section<br>
-      3. Come back here and click "Download Full Report"<br><br>
-      All results will be included in one PDF ✅
+    <div class="card info-card">
+      <strong data-i18n="howToUseTitle">How to use:</strong>
+      <div class="info-steps">
+        <div data-i18n="howToUseStep1">1. Go to other tabs and enter your values</div>
+        <div data-i18n="howToUseStep2">2. Click Calculate in each section</div>
+        <div data-i18n="howToUseStep3">3. Come back here and click "Download Full Report"</div>
+        <div data-i18n="howToUseStep4">All results will be included in one PDF</div>
+      </div>
     </div>
   </div>
 
   <!-- AI PRICES TAB -->
   <div class="calc-section" id="tab-prices">
     <div class="ai-price-card">
-      <h3>🤖 AI Price Estimator</h3>
-      <p>Get AI-estimated current material rates for Tamil Nadu</p>
-      <button class="ai-fetch-btn" id="aiFetchBtn" onclick="fetchAIPrices()">
-        ✨ Get Today's Estimated Prices
-      </button>
-      <div class="ai-loading" id="aiLoading">⏳ AI is estimating prices...</div>
+      <h3 data-i18n="aiPriceTitle">AI Price Estimator</h3>
+      <p data-i18n="aiPriceDesc">Get AI-estimated current material rates for Tamil Nadu</p>
+      <button class="ai-fetch-btn" id="aiFetchBtn" onclick="fetchAIPrices()" data-i18n="btnGetTodaysPrices">Get Today's Estimated Prices</button>
+      <div class="ai-loading" id="aiLoading" data-i18n="aiEstimatingPrices">AI is estimating prices...</div>
     </div>
 
     <div id="priceGrid" style="display:none;">
       <div class="price-grid">
         <div class="price-item">
           <div class="p-icon">🧱</div>
-          <div class="p-label">Cement</div>
+          <div class="p-label" data-i18n="materialCement">Cement</div>
           <div class="p-value" id="pCement">—</div>
-          <div class="p-unit">per 50kg bag</div>
+          <div class="p-unit" data-i18n="unitCementBag">per 50kg bag</div>
           <div class="p-trend" id="pCementTrend"></div>
         </div>
         <div class="price-item">
           <div class="p-icon">🏖</div>
-          <div class="p-label">Sand (M-Sand)</div>
+          <div class="p-label" data-i18n="materialSand">Sand (M-Sand)</div>
           <div class="p-value" id="pSand">—</div>
-          <div class="p-unit">per CFT</div>
+          <div class="p-unit" data-i18n="unitPerCft">per CFT</div>
           <div class="p-trend" id="pSandTrend"></div>
         </div>
         <div class="price-item">
           <div class="p-icon">🪨</div>
-          <div class="p-label">Coarse Aggregate</div>
+          <div class="p-label" data-i18n="materialAggregate">Coarse Aggregate</div>
           <div class="p-value" id="pAggregate">—</div>
-          <div class="p-unit">per CFT</div>
+          <div class="p-unit" data-i18n="unitPerCft">per CFT</div>
           <div class="p-trend" id="pAggregateTrend"></div>
         </div>
         <div class="price-item">
           <div class="p-icon">🔩</div>
-          <div class="p-label">Steel (TMT)</div>
+          <div class="p-label" data-i18n="materialSteel">Steel (TMT)</div>
           <div class="p-value" id="pSteel">—</div>
-          <div class="p-unit">per kg</div>
+          <div class="p-unit" data-i18n="unitPerKg">per kg</div>
           <div class="p-trend" id="pSteelTrend"></div>
         </div>
         <div class="price-item">
           <div class="p-icon">🧱</div>
-          <div class="p-label">Bricks</div>
+          <div class="p-label" data-i18n="materialBricks">Bricks</div>
           <div class="p-value" id="pBrick">—</div>
-          <div class="p-unit">per 1000 nos</div>
+          <div class="p-unit" data-i18n="unitBricks">per 1000 nos</div>
           <div class="p-trend" id="pBrickTrend"></div>
         </div>
         <div class="price-item">
           <div class="p-icon">🎨</div>
-          <div class="p-label">Paint (Exterior)</div>
+          <div class="p-label" data-i18n="materialPaint">Paint (Exterior)</div>
           <div class="p-value" id="pPaint">—</div>
-          <div class="p-unit">per litre</div>
+          <div class="p-unit" data-i18n="unitPerLitre">per litre</div>
           <div class="p-trend" id="pPaintTrend"></div>
         </div>
       </div>
-      <div class="disclaimer-box">
-        ⚠️ <strong>Note:</strong> These are AI-estimated rates based on Tamil Nadu market trends. Actual prices may vary by location, brand, and supplier. Always verify with your local dealer before purchasing.
-      </div>
+      <div class="disclaimer-box" data-i18n="disclaimerText">These are AI-estimated rates based on Tamil Nadu market trends. Actual prices may vary by location, brand, and supplier. Always verify with your local dealer.</div>
       <div class="ai-note" id="aiSummary"></div>
     </div>
   </div>
