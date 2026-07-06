@@ -2,30 +2,54 @@
 const results = {};
 
 // ─── TAB SWITCHING ──────────────────────────────
-function showTab(name) {
+function showTab(name, evt) {
+  const target = document.getElementById('tab-' + name);
+  if (!target) {
+    console.error('showTab: no section found for tab "' + name + '"');
+    return;
+  }
   document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
+  target.classList.add('active');
+  const btn = (evt || window.event) && (evt || window.event).currentTarget;
+  if (btn) btn.classList.add('active');
 }
 
 // ─── HELPERS ────────────────────────────────────
 function getVal(id) {
-  return parseFloat(document.getElementById(id).value);
+  const el = document.getElementById(id);
+  if (!el) {
+    console.error('getVal: missing input element "' + id + '"');
+    return NaN;
+  }
+  return parseFloat(el.value);
 }
 
 function showResult(boxId, valId, value, sub, subId) {
   const box = document.getElementById(boxId);
+  const valEl = document.getElementById(valId);
+  if (!box || !valEl) {
+    console.error('showResult: missing element(s) "' + boxId + '" / "' + valId + '"');
+    return;
+  }
   box.classList.remove('error-box');
   box.classList.add('show');
-  document.getElementById(valId).textContent = value;
-  if (subId && sub) document.getElementById(subId).textContent = sub;
+  valEl.textContent = value;
+  if (subId && sub) {
+    const subEl = document.getElementById(subId);
+    if (subEl) subEl.textContent = sub;
+  }
 }
 
 function showError(boxId, valId, msg) {
   const box = document.getElementById(boxId);
+  const valEl = document.getElementById(valId);
+  if (!box || !valEl) {
+    console.error('showError: missing element(s) "' + boxId + '" / "' + valId + '"');
+    return;
+  }
   box.classList.add('show', 'error-box');
-  document.getElementById(valId).textContent = msg;
+  valEl.textContent = msg;
 }
 
 function validate(...ids) {
@@ -247,7 +271,11 @@ function houseCalc() {
     showError('houseResult','houseResultVal','⚠ Please enter valid area'); return;
   }
   const area = getVal('houseArea');
-  const rate = parseFloat(document.getElementById('houseType').value);
+  const houseTypeEl = document.getElementById('houseType');
+  const rate = houseTypeEl ? parseFloat(houseTypeEl.value) : NaN;
+  if (isNaN(rate) || rate <= 0) {
+    showError('houseResult','houseResultVal','⚠ Please select a valid construction type'); return;
+  }
   const total = area * rate;
   results.houseCost = fmtRs(total);
   showResult('houseResult','houseResultVal', fmtRs(total), 'For ' + fmt(area) + ' sq.ft @ ₹' + fmt(rate) + '/sq.ft', 'houseResultSub');
@@ -256,6 +284,16 @@ function houseCalc() {
 // ─── PREMIUM PDF GENERATION ─────────────────────
 
 function generateReport() {
+  const statusEl = document.getElementById('pdfStatus');
+  const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
+
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    console.error('generateReport: jsPDF library is not loaded');
+    setStatus('⚠ PDF library failed to load. Check your internet connection and try again.');
+    return;
+  }
+
+  try {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({
     orientation: 'portrait',
@@ -545,10 +583,12 @@ function generateReport() {
   addFooter();
   
   doc.save('civil-calculator-professional-report.pdf');
-  document.getElementById('pdfStatus').textContent = '✅ Professional PDF Downloaded Successfully!';
-  setTimeout(() => {
-    document.getElementById('pdfStatus').textContent = '';
-  }, 4000);
+  setStatus('✅ Professional PDF Downloaded Successfully!');
+  setTimeout(() => setStatus(''), 4000);
+  } catch (err) {
+    console.error('generateReport: failed to generate PDF', err);
+    setStatus('⚠ Failed to generate PDF. Please try again.');
+  }
 }
 
 function getUnitForKey(key) {
@@ -583,10 +623,16 @@ function fetchAIPrices() {
   const loading = document.getElementById('aiLoading');
   const grid = document.getElementById('priceGrid');
   
+  if (!btn || !loading || !grid) {
+    console.error('fetchAIPrices: required elements are missing');
+    return;
+  }
+
   btn.disabled = true;
   loading.classList.add('show');
   
   setTimeout(() => {
+    try {
     const prices = {
       cement: 385,
       sand: 12,
@@ -613,8 +659,14 @@ function fetchAIPrices() {
     document.getElementById('aiSummary').textContent = 'Last updated: ' + new Date().toLocaleTimeString('en-IN');
     
     grid.style.display = 'block';
-    loading.classList.remove('show');
-    btn.disabled = false;
+    } catch (err) {
+      console.error('fetchAIPrices: failed to update prices', err);
+      const summary = document.getElementById('aiSummary');
+      if (summary) summary.textContent = '⚠ Failed to fetch prices. Please try again.';
+    } finally {
+      loading.classList.remove('show');
+      btn.disabled = false;
+    }
   }, 1500);
 }
 
