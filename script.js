@@ -1,18 +1,16 @@
 // ─── RESULTS STORE ──────────────────────────────
 const results = {};
 
+// ─── ALLOWED TAB NAMES (whitelist for safe DOM lookup) ─────
+const VALID_TABS = ['concrete','brick','materials','structure','finishing','cost','report','prices'];
+
 // ─── TAB SWITCHING ──────────────────────────────
-function showTab(name, evt) {
-  const target = document.getElementById('tab-' + name);
-  if (!target) {
-    console.error('showTab: no section found for tab "' + name + '"');
-    return;
-  }
+function showTab(name, clickedBtn) {
+  if (!VALID_TABS.includes(name)) return;
   document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  target.classList.add('active');
-  const btn = (evt || window.event) && (evt || window.event).currentTarget;
-  if (btn) btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (clickedBtn) clickedBtn.classList.add('active');
 }
 
 // ─── HELPERS ────────────────────────────────────
@@ -58,7 +56,7 @@ function validate(...ids) {
     const el = document.getElementById(id);
     if (!el) return;
     const v = parseFloat(el.value);
-    if (isNaN(v) || v <= 0) {
+    if (isNaN(v) || v <= 0 || v > 999999) {
       el.classList.add('error');
       ok = false;
     } else {
@@ -583,11 +581,11 @@ function generateReport() {
   addFooter();
   
   doc.save('civil-calculator-professional-report.pdf');
-  setStatus('✅ Professional PDF Downloaded Successfully!');
-  setTimeout(() => setStatus(''), 4000);
+  setStatus('Professional PDF Downloaded Successfully!');
+  setTimeout(function () { setStatus(''); }, 4000);
   } catch (err) {
     console.error('generateReport: failed to generate PDF', err);
-    setStatus('⚠ Failed to generate PDF. Please try again.');
+    setStatus('Failed to generate PDF. Please try again.');
   }
 }
 
@@ -673,6 +671,71 @@ function fetchAIPrices() {
 // ─── LANGUAGE SUPPORT (PLACEHOLDER) ─────────────
 
 function changeLanguage() {
-  const lang = document.getElementById('languageSelector').value;
-  console.log('Language changed to:', lang);
+  document.getElementById('languageSelector').value;
 }
+
+// ─── CALCULATOR DISPATCH MAP ────────────────────
+const calcDispatch = {
+  concrete: concreteCalc,
+  slab: slabCalc,
+  column: columnCalc,
+  beam: beamCalc,
+  footing: footingCalc,
+  brick: brickCalc,
+  cement: cementCalc,
+  sand: sandCalc,
+  jelly: jellyCalc,
+  steel: steelCalc,
+  excavation: excavationCalc,
+  tank: tankCalc,
+  stair: stairCalc,
+  tile: tileCalc,
+  paint: paintCalc,
+  plaster: plasterCalc,
+  cost: costCalc,
+  flooring: flooringCalc,
+  house: houseCalc
+};
+
+// ─── EVENT LISTENER REGISTRATION ────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  // Tab buttons
+  document.querySelectorAll('[data-tab]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showTab(btn.dataset.tab, btn);
+    });
+  });
+
+  // Calculator buttons
+  document.querySelectorAll('[data-calc]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var fn = calcDispatch[btn.dataset.calc];
+      if (fn) fn();
+    });
+  });
+
+  // Reset buttons
+  document.querySelectorAll('[data-reset]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var ids = btn.dataset.reset.split(',');
+      resetCard.apply(null, ids);
+    });
+  });
+
+  // PDF report button
+  var reportBtn = document.getElementById('reportBtn');
+  if (reportBtn) reportBtn.addEventListener('click', generateReport);
+
+  // AI prices button
+  var aiFetchBtn = document.getElementById('aiFetchBtn');
+  if (aiFetchBtn) aiFetchBtn.addEventListener('click', fetchAIPrices);
+
+  // Language selector
+  var langSel = document.getElementById('languageSelector');
+  if (langSel) langSel.addEventListener('change', changeLanguage);
+
+  // Cap numeric inputs to a safe maximum
+  document.querySelectorAll('input[type="number"]').forEach(function (input) {
+    if (!input.hasAttribute('max')) input.setAttribute('max', '999999');
+  });
+});
