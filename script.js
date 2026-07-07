@@ -547,7 +547,7 @@ function generateReport() {
     
     yPos += 10;
     const totalCost = costResults.reduce((sum, [, val]) => {
-      const num = parseInt(val.toString().replace(/₹|,/g, '')) || 0;
+      const num = parseInt(val.toString().replace(/[^\d]/g, ''), 10) || 0;
       return sum + num;
     }, 0);
     
