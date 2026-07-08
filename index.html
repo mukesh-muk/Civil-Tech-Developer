@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civil Calculator Pro — 17 Free Construction Calculators (Tamil Nadu Rates)</title>
+<meta name="description" content="Civil Calculator Pro: 17 free construction calculators for concrete, brick, steel, tiles, paint and cost estimation, with AI material price estimates for Tamil Nadu and a downloadable PDF report. Available in English, Tamil, Hindi, Telugu, Malayalam and Kannada.">
+<meta name="theme-color" content="#1E3A8A">
+<meta property="og:title" content="Civil Calculator Pro — 17 Free Construction Calculators">
+<meta property="og:description" content="Concrete, brick, steel, tile, paint and cost calculators with AI material price estimates for Tamil Nadu and a downloadable PDF report.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%97%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="header">
+  <h1>🏗 <span data-i18n="app.titlePlain">Civil Calculator Pro</span></h1>
+  <p class="tagline" data-i18n="app.tagline">17 calculators · PDF report · Tamil Nadu rates</p>
+
+  <div class="lang-row">
+    <label for="languageSelector" class="sr-only">Language / மொழி</label>
+    <select id="languageSelector" class="lang-select" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="ta">தமிழ்</option>
+      <option value="hi">हिन्दी</option>
+      <option value="te">తెలుగు</option>
+      <option value="ml">മലയാളം</option>
+      <option value="kn">ಕನ್ನಡ</option>
+    </select>
+  </div>
+</header>
+
+<nav class="tabs-wrapper" aria-label="Calculator categories">
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" id="tabbtn-concrete" role="tab" aria-selected="true" aria-controls="tab-concrete" onclick="showTab('concrete', this)" data-i18n="tabs.concrete">Concrete</button>
+    <button class="tab-btn" id="tabbtn-brick" role="tab" aria-selected="false" aria-controls="tab-brick" onclick="showTab('brick', this)" data-i18n="tabs.brick">Brick</button>
+    <button class="tab-btn" id="tabbtn-materials" role="tab" aria-selected="false" aria-controls="tab-materials" onclick="showTab('materials', this)" data-i18n="tabs.materials">Materials</button>
+    <button class="tab-btn" id="tabbtn-structure" role="tab" aria-selected="false" aria-controls="tab-structure" onclick="showTab('structure', this)" data-i18n="tabs.structure">Structure</button>
+    <button class="tab-btn" id="tabbtn-finishing" role="tab" aria-selected="false" aria-controls="tab-finishing" onclick="showTab('finishing', this)" data-i18n="tabs.finishing">Finishing</button>
+    <button class="tab-btn" id="tabbtn-cost" role="tab" aria-selected="false" aria-controls="tab-cost" onclick="showTab('cost', this)" data-i18n="tabs.cost">Cost</button>
+    <button class="tab-btn" id="tabbtn-report" role="tab" aria-selected="false" aria-controls="tab-report" onclick="showTab('report', this)"><span aria-hidden="true">📄</span> <span data-i18n="tabs.report">PDF</span></button>
+    <button class="tab-btn" id="tabbtn-prices" role="tab" aria-selected="false" aria-controls="tab-prices" onclick="showTab('prices', this)"><span aria-hidden="true">🤖</span> <span data-i18n="tabs.prices">AI Prices</span></button>
+  </div>
+</nav>
+
+<main class="main" id="main-content">
+
+  <!-- CONCRETE TAB -->
+  <div class="calc-section active" id="tab-concrete" role="tabpanel" aria-labelledby="tabbtn-concrete">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏗</div>
+        <div class="card-title" data-i18n="concrete.title">Concrete Volume</div>
+      </div>
+      <div class="field"><label for="conLength" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="conLength" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="conWidth" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="conWidth" data-i18n-placeholder="ph.eg8" placeholder="e.g. 8" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="conHeight" data-i18n="f.heightDepthFt">Height / Depth (ft)</label><input type="number" id="conHeight" data-i18n-placeholder="ph.eg05" placeholder="e.g. 0.5" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="concreteCalc()" data-i18n="concrete.btn">Calculate Volume</button>
+      <button class="reset-btn" onclick="resetCard('conLength','conWidth','conHeight','conResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="conResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="concrete.title">Concrete Volume</div>
+        <div class="result-value" id="conResultVal"></div>
+        <div class="result-sub" id="conResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏢</div>
+        <div class="card-title" data-i18n="slab.title">Slab Calculator</div>
+      </div>
+      <div class="field"><label for="slabLength" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="slabLength" data-i18n-placeholder="ph.eg20" placeholder="e.g. 20" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="slabWidth" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="slabWidth" data-i18n-placeholder="ph.eg15" placeholder="e.g. 15" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="slabThick" data-i18n="f.thicknessFt">Thickness (ft)</label><input type="number" id="slabThick" data-i18n-placeholder="ph.eg05" placeholder="e.g. 0.5" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="slabCalc()" data-i18n="slab.btn">Calculate Slab</button>
+      <button class="reset-btn" onclick="resetCard('slabLength','slabWidth','slabThick','slabResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="slabResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="slab.resultLabel">Slab</div>
+        <div class="result-value" id="slabResultVal"></div>
+        <div class="result-sub" id="slabResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏛</div>
+        <div class="card-title" data-i18n="column.title">Column Calculator</div>
+      </div>
+      <div class="field"><label for="colL" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="colL" data-i18n-placeholder="ph.eg1" placeholder="e.g. 1" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="colW" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="colW" data-i18n-placeholder="ph.eg1" placeholder="e.g. 1" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="colH" data-i18n="f.heightFt">Height (ft)</label><input type="number" id="colH" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="columnCalc()" data-i18n="column.btn">Calculate Column</button>
+      <button class="reset-btn" onclick="resetCard('colL','colW','colH','colResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="colResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="column.resultLabel">Column</div>
+        <div class="result-value" id="colResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏗</div>
+        <div class="card-title" data-i18n="beam.title">Beam Calculator</div>
+      </div>
+      <div class="field"><label for="beamL" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="beamL" data-i18n-placeholder="ph.eg15" placeholder="e.g. 15" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="beamW" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="beamW" data-i18n-placeholder="ph.eg1" placeholder="e.g. 1" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="beamH" data-i18n="f.depthFt">Depth (ft)</label><input type="number" id="beamH" data-i18n-placeholder="ph.eg15d" placeholder="e.g. 1.5" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="beamCalc()" data-i18n="beam.btn">Calculate Beam</button>
+      <button class="reset-btn" onclick="resetCard('beamL','beamW','beamH','beamResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="beamResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="beam.resultLabel">Beam</div>
+        <div class="result-value" id="beamResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏠</div>
+        <div class="card-title" data-i18n="footing.title">Footing Calculator</div>
+      </div>
+      <div class="field"><label for="footL" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="footL" data-i18n-placeholder="ph.eg4" placeholder="e.g. 4" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="footW" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="footW" data-i18n-placeholder="ph.eg4" placeholder="e.g. 4" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="footD" data-i18n="f.depthFt">Depth (ft)</label><input type="number" id="footD" data-i18n-placeholder="ph.eg2" placeholder="e.g. 2" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="footingCalc()" data-i18n="footing.btn">Calculate Footing</button>
+      <button class="reset-btn" onclick="resetCard('footL','footW','footD','footResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="footResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="footing.resultLabel">Footing</div>
+        <div class="result-value" id="footResultVal"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BRICK TAB -->
+  <div class="calc-section" id="tab-brick" role="tabpanel" aria-labelledby="tabbtn-brick">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🧱</div>
+        <div class="card-title" data-i18n="brick.title">Brick Calculator</div>
+      </div>
+      <div class="field"><label for="wallL" data-i18n="f.wallLengthFt">Wall Length (ft)</label><input type="number" id="wallL" data-i18n-placeholder="ph.eg20" placeholder="e.g. 20" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="wallH" data-i18n="f.wallHeightFt">Wall Height (ft)</label><input type="number" id="wallH" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="brickCalc()" data-i18n="brick.btn">Calculate Bricks</button>
+      <button class="reset-btn" onclick="resetCard('wallL','wallH','brickRes')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="brickRes" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="brick.resultLabel">Bricks Required</div>
+        <div class="result-value" id="brickResVal"></div>
+        <div class="result-sub" id="brickResSub"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIALS TAB -->
+  <div class="calc-section" id="tab-materials" role="tabpanel" aria-labelledby="tabbtn-materials">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🧱</div>
+        <div class="card-title" data-i18n="cement.title">Cement Bags</div>
+      </div>
+      <div class="field"><label for="cemVol" data-i18n="f.concreteVolCft">Concrete Volume (CFT)</label><input type="number" id="cemVol" data-i18n-placeholder="ph.eg100" placeholder="e.g. 100" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="cementCalc()" data-i18n="cement.btn">Calculate Cement</button>
+      <button class="reset-btn" onclick="resetCard('cemVol','cemResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="cemResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="cement.resultLabel">Cement Required</div>
+        <div class="result-value" id="cemResultVal"></div>
+        <div class="result-sub" id="cemResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏖</div>
+        <div class="card-title" data-i18n="sand.title">Sand Calculator</div>
+      </div>
+      <div class="field"><label for="sandVol" data-i18n="f.concreteVolCft">Concrete Volume (CFT)</label><input type="number" id="sandVol" data-i18n-placeholder="ph.eg100" placeholder="e.g. 100" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="sandCalc()" data-i18n="sand.btn">Calculate Sand</button>
+      <button class="reset-btn" onclick="resetCard('sandVol','sandResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="sandResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="sand.resultLabel">Sand Required</div>
+        <div class="result-value" id="sandResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🪨</div>
+        <div class="card-title" data-i18n="jelly.title">Jelly (Aggregate)</div>
+      </div>
+      <div class="field"><label for="jellyVol" data-i18n="f.concreteVolCft">Concrete Volume (CFT)</label><input type="number" id="jellyVol" data-i18n-placeholder="ph.eg100" placeholder="e.g. 100" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="jellyCalc()" data-i18n="jelly.btn">Calculate Jelly</button>
+      <button class="reset-btn" onclick="resetCard('jellyVol','jellyResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="jellyResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="jelly.resultLabel">Jelly Required</div>
+        <div class="result-value" id="jellyResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🔩</div>
+        <div class="card-title" data-i18n="steel.title">Steel Weight</div>
+      </div>
+      <div class="field"><label for="steelDia" data-i18n="f.steelDiaMm">Steel Diameter (mm)</label><input type="number" id="steelDia" data-i18n-placeholder="ph.eg12" placeholder="e.g. 12" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="steelLen" data-i18n="f.steelLenFt">Steel Length (ft)</label><input type="number" id="steelLen" data-i18n-placeholder="ph.eg40" placeholder="e.g. 40" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="steelCalc()" data-i18n="steel.btn">Calculate Steel</button>
+      <button class="reset-btn" onclick="resetCard('steelDia','steelLen','steelResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="steelResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="steel.resultLabel">Steel Weight</div>
+        <div class="result-value" id="steelResultVal"></div>
+        <div class="result-sub" id="steelResultSub"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STRUCTURE TAB -->
+  <div class="calc-section" id="tab-structure" role="tabpanel" aria-labelledby="tabbtn-structure">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">⛏</div>
+        <div class="card-title" data-i18n="excavation.title">Excavation</div>
+      </div>
+      <div class="field"><label for="excL" data-i18n="f.lengthFt">Length (ft)</label><input type="number" id="excL" data-i18n-placeholder="ph.eg20" placeholder="e.g. 20" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="excW" data-i18n="f.widthFt">Width (ft)</label><input type="number" id="excW" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="excD" data-i18n="f.depthFt">Depth (ft)</label><input type="number" id="excD" data-i18n-placeholder="ph.eg5" placeholder="e.g. 5" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="excavationCalc()" data-i18n="excavation.btn">Calculate Excavation</button>
+      <button class="reset-btn" onclick="resetCard('excL','excW','excD','excResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="excResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="excavation.resultLabel">Excavation Volume</div>
+        <div class="result-value" id="excResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🚰</div>
+        <div class="card-title" data-i18n="tank.title">Water Tank</div>
+      </div>
+      <div class="field"><label for="tankL" data-i18n="f.tankLengthFt">Tank Length (ft)</label><input type="number" id="tankL" data-i18n-placeholder="ph.eg6" placeholder="e.g. 6" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="tankW" data-i18n="f.tankWidthFt">Tank Width (ft)</label><input type="number" id="tankW" data-i18n-placeholder="ph.eg4" placeholder="e.g. 4" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="tankH" data-i18n="f.tankHeightFt">Tank Height (ft)</label><input type="number" id="tankH" data-i18n-placeholder="ph.eg4" placeholder="e.g. 4" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="tankCalc()" data-i18n="tank.btn">Calculate Capacity</button>
+      <button class="reset-btn" onclick="resetCard('tankL','tankW','tankH','tankResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="tankResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="tank.resultLabel">Tank Capacity</div>
+        <div class="result-value" id="tankResultVal"></div>
+        <div class="result-sub" id="tankResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🪜</div>
+        <div class="card-title" data-i18n="stair.title">Staircase</div>
+      </div>
+      <div class="field"><label for="stairH" data-i18n="f.floorHeightFt">Floor Height (ft)</label><input type="number" id="stairH" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="stepH" data-i18n="f.stepHeightFt">Each Step Height (ft)</label><input type="number" id="stepH" data-i18n-placeholder="ph.eg058" placeholder="e.g. 0.58" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="stairCalc()" data-i18n="stair.btn">Calculate Steps</button>
+      <button class="reset-btn" onclick="resetCard('stairH','stepH','stairResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="stairResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="stair.resultLabel">Steps Required</div>
+        <div class="result-value" id="stairResultVal"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FINISHING TAB -->
+  <div class="calc-section" id="tab-finishing" role="tabpanel" aria-labelledby="tabbtn-finishing">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">⬜</div>
+        <div class="card-title" data-i18n="tile.title">Tile Calculator</div>
+      </div>
+      <div class="field"><label for="tileL" data-i18n="f.roomLengthFt">Room Length (ft)</label><input type="number" id="tileL" data-i18n-placeholder="ph.eg15" placeholder="e.g. 15" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="tileW" data-i18n="f.roomWidthFt">Room Width (ft)</label><input type="number" id="tileW" data-i18n-placeholder="ph.eg12" placeholder="e.g. 12" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="tileS" data-i18n="f.tileSizeFt">Tile Size (ft × ft)</label><input type="number" id="tileS" data-i18n-placeholder="ph.egTile" placeholder="e.g. 2 for 2×2 ft" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="tileCalc()" data-i18n="tile.btn">Calculate Tiles</button>
+      <button class="reset-btn" onclick="resetCard('tileL','tileW','tileS','tileResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="tileResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="tile.resultLabel">Tiles Required</div>
+        <div class="result-value" id="tileResultVal"></div>
+        <div class="result-sub" id="tileResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🎨</div>
+        <div class="card-title" data-i18n="paint.title">Paint Calculator</div>
+      </div>
+      <div class="field"><label for="paintL" data-i18n="f.wallLengthFt">Wall Length (ft)</label><input type="number" id="paintL" data-i18n-placeholder="ph.eg20" placeholder="e.g. 20" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="paintH" data-i18n="f.wallHeightFt">Wall Height (ft)</label><input type="number" id="paintH" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="paintCalc()" data-i18n="paint.btn">Calculate Paint</button>
+      <button class="reset-btn" onclick="resetCard('paintL','paintH','paintResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="paintResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="paint.resultLabel">Paint Required (2 coats)</div>
+        <div class="result-value" id="paintResultVal"></div>
+        <div class="result-sub" id="paintResultSub"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🧱</div>
+        <div class="card-title" data-i18n="plaster.title">Plaster Calculator</div>
+      </div>
+      <div class="field"><label for="plasL" data-i18n="f.wallLengthFt">Wall Length (ft)</label><input type="number" id="plasL" data-i18n-placeholder="ph.eg20" placeholder="e.g. 20" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="plasH" data-i18n="f.wallHeightFt">Wall Height (ft)</label><input type="number" id="plasH" data-i18n-placeholder="ph.eg10" placeholder="e.g. 10" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="plasterCalc()" data-i18n="plaster.btn">Calculate Plaster</button>
+      <button class="reset-btn" onclick="resetCard('plasL','plasH','plasResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="plasResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="plaster.resultLabel">Plaster Area</div>
+        <div class="result-value" id="plasResultVal"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COST TAB -->
+  <div class="calc-section" id="tab-cost" role="tabpanel" aria-labelledby="tabbtn-cost">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">💰</div>
+        <div class="card-title" data-i18n="cementCost.title">Cement Cost</div>
+      </div>
+      <div class="field"><label for="cemBags" data-i18n="f.totalCementBags">Total Cement Bags</label><input type="number" id="cemBags" data-i18n-placeholder="ph.eg50" placeholder="e.g. 50" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="cemPrice" data-i18n="f.pricePerBag">Price Per Bag (₹)</label><input type="number" id="cemPrice" data-i18n-placeholder="ph.eg380" placeholder="e.g. 380" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="costCalc()" data-i18n="cementCost.btn">Calculate Cost</button>
+      <button class="reset-btn" onclick="resetCard('cemBags','cemPrice','costResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="costResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="cementCost.resultLabel">Total Cement Cost</div>
+        <div class="result-value" id="costResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">⬜</div>
+        <div class="card-title" data-i18n="flooring.title">Flooring Cost</div>
+      </div>
+      <div class="field"><label for="floorArea" data-i18n="f.floorAreaSqft">Floor Area (sq.ft)</label><input type="number" id="floorArea" data-i18n-placeholder="ph.eg500" placeholder="e.g. 500" min="0" inputmode="decimal"></div>
+      <div class="field"><label for="floorRate" data-i18n="f.ratePerSqft">Rate per sq.ft (₹)</label><input type="number" id="floorRate" data-i18n-placeholder="ph.eg60" placeholder="e.g. 60" min="0" inputmode="decimal"></div>
+      <button class="calc-btn" onclick="flooringCalc()" data-i18n="flooring.btn">Calculate Cost</button>
+      <button class="reset-btn" onclick="resetCard('floorArea','floorRate','floorResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="floorResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="flooring.resultLabel">Total Flooring Cost</div>
+        <div class="result-value" id="floorResultVal"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true">🏠</div>
+        <div class="card-title" data-i18n="house.title">House Construction Estimator</div>
+      </div>
+      <div class="field"><label for="houseArea" data-i18n="f.houseAreaSqft">House Area (sq.ft)</label><input type="number" id="houseArea" data-i18n-placeholder="ph.eg1000" placeholder="e.g. 1000" min="0" inputmode="decimal"></div>
+      <div class="field">
+        <label for="houseType" data-i18n="f.constructionType">Construction Type</label>
+        <select id="houseType">
+          <option value="1800" data-i18n="house.basic">Basic (₹1,800/sq.ft)</option>
+          <option value="2500" selected data-i18n="house.standard">Standard (₹2,500/sq.ft)</option>
+          <option value="3500" data-i18n="house.premium">Premium (₹3,500/sq.ft)</option>
+          <option value="5000" data-i18n="house.luxury">Luxury (₹5,000/sq.ft)</option>
+        </select>
+      </div>
+      <button class="calc-btn" onclick="houseCalc()" data-i18n="house.btn">Estimate Cost</button>
+      <button class="reset-btn" onclick="resetCard('houseArea','houseResult')" data-i18n="common.clear">Clear</button>
+      <div class="result-box" id="houseResult" role="status" aria-live="polite">
+        <div class="result-label" data-i18n="house.resultLabel">Estimated Construction Cost</div>
+        <div class="result-value" id="houseResultVal"></div>
+        <div class="result-sub" id="houseResultSub"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PDF TAB -->
+  <div class="calc-section" id="tab-report" role="tabpanel" aria-labelledby="tabbtn-report">
+    <div class="pdf-card">
+      <h3><span aria-hidden="true">📄</span> <span data-i18n="pdf.title">PDF Report</span></h3>
+      <p data-i18n="pdf.desc">Professional multi-page PDF report with summary and material details</p>
+      <button class="pdf-btn" onclick="generateReport()"><span aria-hidden="true">📥</span> <span data-i18n="pdf.download">Download Full Report</span></button>
+      <div class="pdf-status" id="pdfStatus" role="status" aria-live="polite"></div>
+    </div>
+    <div class="card pdf-info-card">
+      <strong data-i18n="pdf.howTo">How to use:</strong><br>
+      <span data-i18n="pdf.step1">1. Go to other tabs and enter your values</span><br>
+      <span data-i18n="pdf.step2">2. Click Calculate in each section</span><br>
+      <span data-i18n="pdf.step3">3. Come back here and click "Download Full Report"</span><br><br>
+      <span data-i18n="pdf.step4">All results will be included in one PDF ✅</span>
+      <p class="pdf-lang-note" data-i18n="pdf.langNote">Note: the downloaded PDF report is generated in English for compatibility with all devices and printers.</p>
+    </div>
+  </div>
+
+  <!-- AI PRICES TAB -->
+  <div class="calc-section" id="tab-prices" role="tabpanel" aria-labelledby="tabbtn-prices">
+    <div class="ai-price-card">
+      <h3><span aria-hidden="true">🤖</span> <span data-i18n="ai.title">AI Price Estimator</span></h3>
+      <p data-i18n="ai.desc">Get AI-estimated current material rates for Tamil Nadu</p>
+      <button class="ai-fetch-btn" id="aiFetchBtn" onclick="fetchAIPrices()">
+        <span aria-hidden="true">✨</span> <span id="aiFetchBtnText" data-i18n="ai.fetchBtn">Get Today's Estimated Prices</span>
+      </button>
+      <div class="ai-loading" id="aiLoading" role="status" aria-live="polite" data-i18n="ai.loading">⏳ AI is estimating prices...</div>
+    </div>
+
+    <div id="priceGrid" style="display:none;">
+      <div class="price-grid">
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🧱</div>
+          <div class="p-label" data-i18n="ai.cement">Cement</div>
+          <div class="p-value" id="pCement">—</div>
+          <div class="p-unit" data-i18n="ai.per50kg">per 50kg bag</div>
+          <div class="p-trend" id="pCementTrend"></div>
+        </div>
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🏖</div>
+          <div class="p-label" data-i18n="ai.sand">Sand (M-Sand)</div>
+          <div class="p-value" id="pSand">—</div>
+          <div class="p-unit" data-i18n="ai.perCft">per CFT</div>
+          <div class="p-trend" id="pSandTrend"></div>
+        </div>
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🪨</div>
+          <div class="p-label" data-i18n="ai.aggregate">Coarse Aggregate</div>
+          <div class="p-value" id="pAggregate">—</div>
+          <div class="p-unit" data-i18n="ai.perCft">per CFT</div>
+          <div class="p-trend" id="pAggregateTrend"></div>
+        </div>
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🔩</div>
+          <div class="p-label" data-i18n="ai.steel">Steel (TMT)</div>
+          <div class="p-value" id="pSteel">—</div>
+          <div class="p-unit" data-i18n="ai.perKg">per kg</div>
+          <div class="p-trend" id="pSteelTrend"></div>
+        </div>
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🧱</div>
+          <div class="p-label" data-i18n="ai.brick">Bricks</div>
+          <div class="p-value" id="pBrick">—</div>
+          <div class="p-unit" data-i18n="ai.per1000">per 1000 nos</div>
+          <div class="p-trend" id="pBrickTrend"></div>
+        </div>
+        <div class="price-item">
+          <div class="p-icon" aria-hidden="true">🎨</div>
+          <div class="p-label" data-i18n="ai.paint">Paint (Exterior)</div>
+          <div class="p-value" id="pPaint">—</div>
+          <div class="p-unit" data-i18n="ai.perLitre">per litre</div>
+          <div class="p-trend" id="pPaintTrend"></div>
+        </div>
+      </div>
+      <div class="disclaimer-box">
+        <span aria-hidden="true">⚠️</span> <strong data-i18n="ai.noteLabel">Note:</strong> <span data-i18n="ai.disclaimer">These are AI-estimated rates based on Tamil Nadu market trends. Actual prices may vary by location, brand, and supplier. Always verify with your local dealer before purchasing.</span>
+      </div>
+      <div class="ai-note" id="aiSummary"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="app-footer" data-i18n="app.footer">Civil Calculator Pro · Built for Tamil Nadu contractors</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>
